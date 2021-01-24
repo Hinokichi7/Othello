@@ -14,5 +14,13 @@ export default {
   components: {
     HelloWorld,
   },
+  select(rows) {
+    rows.forEach((row) => {
+      row.forEach((cell) => {
+        const x = cell;
+        x.value = '';
+      });
+    });
+  },
 };
 </script>
