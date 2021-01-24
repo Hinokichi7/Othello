@@ -16,33 +16,31 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
 
-  // row: any[] = [{}, {}, {}, {}, {}, {}, {}, {}];
-
   rows: any[]=
     [
       [
-        { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' },
+        { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' },
       ],
       [
-        { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' },
+        { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' },
       ],
       [
-        { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' },
+        { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' },
       ],
       [
-        { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' },
+        { value: '' }, { value: '' }, { value: '' }, { value: '○' }, { value: '●' }, { value: '' }, { value: '' }, { value: '' },
       ],
       [
-        { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' },
+        { value: '' }, { value: '' }, { value: '' }, { value: '●' }, { value: '○' }, { value: '' }, { value: '' }, { value: '' },
       ],
       [
-        { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' },
+        { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' },
       ],
       [
-        { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' },
+        { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' },
       ],
       [
-        { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' },
+        { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' },
       ],
     ];
 }
@@ -52,17 +50,22 @@ export default class HelloWorld extends Vue {
 <style scoped>
 table{
   width: 100%;
-    border: 1px solid #ccc;
-}
-
-tr{
-  padding: 5px;
+  margin: 0 auto;
+  max-width: 900px;
   border: 1px solid #ccc;
 }
+
+/* tr{
+  padding: 5px;
+  border: 1px solid #ccc;
+} */
 
 td{
   padding: 5px;
+  width: 80px;
+  height: 80px;
   border: 1px solid #ccc;
+  font-size: 70px;
 }
 
 h3 {
