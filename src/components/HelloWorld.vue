@@ -51,8 +51,9 @@ export default class HelloWorld extends Vue {
 table{
   width: 100%;
   margin: 0 auto;
-  max-width: 900px;
+  max-width: 700px;
   border: 1px solid #ccc;
+  background-color: #008000;
 }
 
 /* tr{
@@ -61,25 +62,11 @@ table{
 } */
 
 td{
-  padding: 5px;
+  /* padding: 5px; */
   width: 80px;
   height: 80px;
   border: 1px solid #ccc;
-  font-size: 70px;
+  font-size: 50px;
 }
 
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
 </style>
