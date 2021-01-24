@@ -1,8 +1,9 @@
 <template>
 <body>
+  <h3>{{msg}}</h3>
   <table>
     <tr v-for="row in rows" :key="row.id">
-      <td v-for="cell in row_cells" :key="cell.id">{{cell.value}}</td>
+      <td v-for="cell in row" :key="cell.id">{{cell.value}}</td>
     </tr>
   </table>
 </body>
@@ -15,29 +16,53 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
 
-  rows: any[]= [
-    {
-      rowCells: [
-        [{ id: '1', value: 'aaa' }, {}, {}, {}, {}, {}, {}, {}],
-        [{}, {}, {}, {}, {}, {}, {}, {}],
-        [{}, {}, {}, {}, {}, {}, {}, {}],
-        [{}, {}, {}, {}, {}, {}, {}, {}],
-        [{}, {}, {}, {}, {}, {}, {}, {}],
-        [{}, {}, {}, {}, {}, {}, {}, {}],
-        [{}, {}, {}, {}, {}, {}, {}, {}],
-        [{}, {}, {}, {}, {}, {}, {}, {}],
-      ],
-    },
-  ];
-}
+  // row: any[] = [{}, {}, {}, {}, {}, {}, {}, {}];
 
+  rows: any[]=
+    [
+      [
+        { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' },
+      ],
+      [
+        { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' },
+      ],
+      [
+        { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' },
+      ],
+      [
+        { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' },
+      ],
+      [
+        { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' },
+      ],
+      [
+        { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' },
+      ],
+      [
+        { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' },
+      ],
+      [
+        { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' }, { value: '○' },
+      ],
+    ];
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 table{
-  width: 80%;
-    border: 10px solid rgba(0, 0, 0, 0.12);
+  width: 100%;
+    border: 1px solid #ccc;
+}
+
+tr{
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+td{
+  padding: 5px;
+  border: 1px solid #ccc;
 }
 
 h3 {
