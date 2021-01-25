@@ -8,7 +8,7 @@
     <tr v-for="row in rows" :key="row.id">
       <!-- 行 -->
       <td v-for="cell in row" :key="cell.id">
-        <!-- クリックイベント(ボタン) -->
+        <!-- クリックでセルのidをセット -->
         <button @click="select(cell.id)">{{cell.value}}</button>
       </td>
     </tr>
@@ -28,7 +28,7 @@ export default class HelloWorld extends Vue {
   rows: any[][]=
     [
       [
-        { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' },
+        { id: 1, value: '' }, { id: 2, value: '' }, { id: 3, value: '' }, { id: 5, value: '' }, { id: 6, value: '' }, { id: 7, value: '' }, { value: '' }, { value: '' },
       ],
       [
         { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' }, { value: '' },
@@ -54,8 +54,8 @@ export default class HelloWorld extends Vue {
     ];
 
   // Homeクラスで設定
-  select() {
-    this.$emit('select', this.rows);
+  select(id: any) {
+    this.$emit('select', id, this.rows);
   }
 }
 

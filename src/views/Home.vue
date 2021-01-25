@@ -14,12 +14,21 @@ export default {
   components: {
     HelloWorld,
   },
-  select(rows) {
+
+  // クリックされたセルのidと同じセルのコマをかえる
+  // select(id, rows) {
+  //   rows.forEach((row) => {
+  //     row.forEach((cell) => {
+  //       const x = cell;
+  //       if (id === x.id) {
+  //         x.value = '●';
+  //       }
+  //     });
+  //   });
+  // },
+  select(id, rows) {
     rows.forEach((row) => {
-      row.forEach((cell) => {
-        const x = cell;
-        x.value = '';
-      });
+      row.find((cell) => cell.id === id);
     });
   },
 };
