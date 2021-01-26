@@ -28,7 +28,8 @@ export default {
   // },
   select(id, rows) {
     rows.forEach((row) => {
-      row.find((cell) => cell.id === id);
+      const selectCell = row.find((cell) => cell.id === id);
+      selectCell.value = '●';
     });
   },
 };
