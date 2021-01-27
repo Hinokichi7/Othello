@@ -25,8 +25,10 @@ export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
 
   // table
-  id: number = 0;
-  value: string = '';
+  id = 0;
+
+  value = '';
+
   // rowの中身を分ける
   rows: any[][]=
     [
