@@ -68,6 +68,19 @@ export default class HelloWorld extends Vue {
         || cell9 !== ''
       ) {
         console.log('rinsetu');
+        if (
+          cell1 !== this.rows[x][y]
+          || cell2 !== this.rows[x][y]
+          || cell3 !== this.rows[x][y]
+          || cell4 !== this.rows[x][y]
+          || cell5 !== this.rows[x][y]
+          || cell6 !== this.rows[x][y]
+          || cell7 !== this.rows[x][y]
+          || cell8 !== this.rows[x][y]
+          || cell9 !== this.rows[x][y]
+        ) {
+          console.log('atai');
+        }
       }
       // 配列の変更をVueに検知させる
       Vue.set(this.rows, x, this.rows[x]);
