@@ -46,10 +46,27 @@ export default class HelloWorld extends Vue {
     // クリックしたセルが空文字
     if (this.rows[x][y] === '') {
       this.rows[x][y] = this.getStone();
-      // 隣接したセルに値があればログを返す
-      const x1 = x - 1 || x || x + 1;
-      const y1 = y - 1 || y || y + 1;
-      if (this.rows[x1][y1] !== '') {
+      // 隣接したセル
+      const cell1 = this.rows[x - 1][y - 1];
+      const cell2 = this.rows[x - 1][y];
+      const cell3 = this.rows[x - 1][y + 1];
+      const cell4 = this.rows[x][y - 1];
+      const cell5 = this.rows[x][y + 1];
+      const cell6 = this.rows[x][y + 1];
+      const cell7 = this.rows[x + 1][y - 1];
+      const cell8 = this.rows[x + 1][y];
+      const cell9 = this.rows[x + 1][y + 1];
+      if (
+        cell1 !== ''
+        || cell2 !== ''
+        || cell3 !== ''
+        || cell4 !== ''
+        || cell5 !== ''
+        || cell6 !== ''
+        || cell7 !== ''
+        || cell8 !== ''
+        || cell9 !== ''
+      ) {
         console.log('rinsetu');
       }
       // 配列の変更をVueに検知させる
