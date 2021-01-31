@@ -5,11 +5,11 @@
   <!-- ボード -->
   <table>
     <!-- 段 -->
-    <tr v-for="row in rows" :key="row.id">
+    <tr v-for="(row, rowIndex) in rows" :key="rowIndex">
       <!-- 行 -->
-      <td v-for="cell in row" :key="cell.id">
+      <td v-for="(col, colIndex) in row" :key="colIndex">
         <!-- クリックでセルのidをセット -->
-        <button @click="select(cell.id)">{{cell.value}}</button>
+        <button @click="select(rowIndex, colIndex)">{{col}}</button>
       </td>
     </tr>
   </table>
@@ -24,49 +24,46 @@ export default class HelloWorld extends Vue {
   // Homeクラスで設定
   @Prop() private msg!: string;
 
+  currentStone = '○';
   // table
-  id = 0;
 
-  value = '';
-
-  // rowの中身を分ける
   rows: any[][]=
     [
-      [
-        { id: 1, value: '' }, { id: 2, value: '' }, { id: 3, value: '' }, { id: 4, value: '' }, { id: 5, value: '' }, { id: 6, value: '' }, { id: 7, value: '' }, { id: 8, value: '' },
-      ],
-      [
-        { id: 1, value: '' }, { id: 2, value: '' }, { id: 3, value: '' }, { id: 4, value: '' }, { id: 5, value: '' }, { id: 6, value: '' }, { id: 7, value: '' }, { id: 8, value: '' },
-      ],
-      [
-        { id: 1, value: '' }, { id: 2, value: '' }, { id: 3, value: '' }, { id: 4, value: '' }, { id: 5, value: '' }, { id: 6, value: '' }, { id: 7, value: '' }, { id: 8, value: '' },
-      ],
-      [
-        { id: 1, value: '' }, { id: 2, value: '' }, { id: 3, value: '' }, { id: 4, value: '●' }, { id: 5, value: '○' }, { id: 6, value: '' }, { id: 7, value: '' }, { id: 8, value: '' },
-      ],
-      [
-        { id: 1, value: '' }, { id: 2, value: '' }, { id: 3, value: '' }, { id: 4, value: '○' }, { id: 5, value: '●' }, { id: 6, value: '' }, { id: 7, value: '' }, { id: 8, value: '' },
-      ],
-      [
-        { id: 1, value: '' }, { id: 2, value: '' }, { id: 3, value: '' }, { id: 4, value: '' }, { id: 5, value: '' }, { id: 6, value: '' }, { id: 7, value: '' }, { id: 8, value: '' },
-      ],
-      [
-        { id: 1, value: '' }, { id: 2, value: '' }, { id: 3, value: '' }, { id: 4, value: '' }, { id: 5, value: '' }, { id: 6, value: '' }, { id: 7, value: '' }, { id: 8, value: '' },
-      ],
-      [
-        { id: 1, value: '' }, { id: 2, value: '' }, { id: 3, value: '' }, { id: 4, value: '' }, { id: 5, value: '' }, { id: 6, value: '' }, { id: 7, value: '' }, { id: 8, value: '' },
-      ],
+      ['', '', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', '', ''],
+      ['', '', '', '●', '○', '', '', ''],
+      ['', '', '', '○', '●', '', '', ''],
+      ['', '', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', '', ''],
     ];
 
-  // Homeクラスで設定
-  select(id: any) {
-    this.$emit('select', id, this.rows);
+  select(rowIndex: number, colIndex: number) {
+    // clickしたセルの位置
+    const x = rowIndex;
+    const y = colIndex;
+    // クリックしたセルが空文字
+    if (this.rows[x][y] === '') {
+      this.rows[x][y] = this.getStone();
+      // 隣接したセルに値があればログを返す
+      const x1 = x - 1 || x || x + 1;
+      const y1 = y - 1 || y || y + 1;
+      if (this.rows[x1][y1] !== '') {
+        console.log('rinsetu');
+      }
+      // 配列の変更をVueに検知させる
+      Vue.set(this.rows, x, this.rows[x]);
+    }
+  }
+
+  getStone() {
+    const stone = this.currentStone === '○' ? '●' : '○';
+    this.currentStone = stone;
+    return stone;
   }
 }
-
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 table{
   width: 100%;
