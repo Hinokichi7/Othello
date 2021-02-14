@@ -44,7 +44,7 @@ export default class HelloWorld extends Vue {
     const x = rowIndex;
     const y = colIndex;
     const flug = '';
-    // クリックしたセルが空文字
+    // クリックしたセルにコマがない
     if (this.rows[x][y] === '') {
       this.rows[x][y] = this.getStone();
       // 隣接したセル
@@ -57,7 +57,8 @@ export default class HelloWorld extends Vue {
       const cell7 = this.rows[x + 1][y - 1];
       const cell8 = this.rows[x + 1][y];
       const cell9 = this.rows[x + 1][y + 1];
-      if (cell1 !== '' && cell1 !== this.rows[x][y]) {
+      // 色違いの隣接したセルがある
+      if (cell1 !== '' && cell1 !== this.getStone()) {
         console.log('cell1');
       }
       if (cell2 !== '' && cell2 !== this.rows[x][y]) {
@@ -85,19 +86,6 @@ export default class HelloWorld extends Vue {
         console.log('cell9');
       }
 
-      // if (
-      //   (cell1 !== '' && cell1 !== this.rows[x][y])
-      //   || (cell2 !== '' && cell2 !== this.rows[x][y])
-      //   || (cell3 !== '' && cell3 !== this.rows[x][y])
-      //   || (cell4 !== '' && cell4 !== this.rows[x][y])
-      //   || (cell5 !== '' && cell5 !== this.rows[x][y])
-      //   || (cell6 !== '' && cell6 !== this.rows[x][y])
-      //   || (cell7 !== '' && cell7 !== this.rows[x][y])
-      //   || (cell8 !== '' && cell8 !== this.rows[x][y])
-      //   || (cell9 !== '' && cell9 !== this.rows[x][y])
-      // ) {
-      //   console.log('rinsetu');
-      // }
       // 配列の変更をVueに検知させる
       Vue.set(this.rows, x, this.rows[x]);
     }
