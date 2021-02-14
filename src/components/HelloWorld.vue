@@ -18,6 +18,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import Cell from '../class/cell';
 
 @Component
 export default class HelloWorld extends Vue {
@@ -25,77 +26,96 @@ export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
 
   currentStone = '○';
+
   // table
-
-  rows: any[][]=
-    [
-      ['', '', '', '', '', '', '', ''],
-      ['', '', '', '', '', '', '', ''],
-      ['', '', '', '', '', '', '', ''],
-      ['', '', '', '●', '○', '', '', ''],
-      ['', '', '', '○', '●', '', '', ''],
-      ['', '', '', '', '', '', '', ''],
-      ['', '', '', '', '', '', '', ''],
-      ['', '', '', '', '', '', '', ''],
-    ];
-
-  select(rowIndex: number, colIndex: number) {
-    // clickしたセルの位置
-    const x = rowIndex;
-    const y = colIndex;
-    const flug = '';
-    // クリックしたセルにコマがない
-    if (this.rows[x][y] === '') {
-      this.rows[x][y] = this.getStone();
-      // 隣接したセル
-      const cell1 = this.rows[x - 1][y - 1];
-      const cell2 = this.rows[x - 1][y];
-      const cell3 = this.rows[x - 1][y + 1];
-      const cell4 = this.rows[x][y - 1];
-      const cell5 = this.rows[x][y + 1];
-      const cell6 = this.rows[x][y + 1];
-      const cell7 = this.rows[x + 1][y - 1];
-      const cell8 = this.rows[x + 1][y];
-      const cell9 = this.rows[x + 1][y + 1];
-      // 色違いの隣接したセルがある
-      if (cell1 !== '' && cell1 !== this.getStone()) {
-        console.log('cell1');
+  x() {
+    let rows!: Cell[][];
+    for (let i = 0; i < 8; i = +1) {
+      let row!: Cell[];
+      row.push(new Cell());
+      for (let k = 0; k < 8; k = +1) {
+        rows.push(row);
       }
-      if (cell2 !== '' && cell2 !== this.rows[x][y]) {
-        console.log('cell2');
-      }
-      if (cell3 !== '' && cell3 !== this.rows[x][y]) {
-        console.log('cell3');
-      }
-      if (cell4 !== '' && cell4 !== this.rows[x][y]) {
-        console.log('cell4');
-      }
-      if (cell5 !== '' && cell5 !== this.rows[x][y]) {
-        console.log('cell5');
-      }
-      if (cell6 !== '' && cell6 !== this.rows[x][y]) {
-        console.log('cell6');
-      }
-      if (cell7 !== '' && cell7 !== this.rows[x][y]) {
-        console.log('cell7');
-      }
-      if (cell8 !== '' && cell8 !== this.rows[x][y]) {
-        console.log('cell8');
-      }
-      if (cell9 !== '' && cell9 !== this.rows[x][y]) {
-        console.log('cell9');
-      }
-
-      // 配列の変更をVueに検知させる
-      Vue.set(this.rows, x, this.rows[x]);
     }
+    return rows;
   }
 
-  getStone() {
-    const stone = this.currentStone === '○' ? '●' : '○';
-    this.currentStone = stone;
-    return stone;
+  rows: Cell[][] | null = null;
+
+  created() {
+    this.rows = this.x();
   }
+
+  // rows: any[][]=
+  //   [
+  //     ['', '', '', '', '', '', '', ''],
+  //     ['', '', '', '', '', '', '', ''],
+  //     ['', '', '', '', '', '', '', ''],
+  //     ['', '', '', '●', '○', '', '', ''],
+  //     ['', '', '', '○', '●', '', '', ''],
+  //     ['', '', '', '', '', '', '', ''],
+  //     ['', '', '', '', '', '', '', ''],
+  //     ['', '', '', '', '', '', '', ''],
+  //   ];
+
+  // select(rowIndex: number, colIndex: number) {
+  //   // clickしたセルの位置
+  //   const x = rowIndex;
+  //   const y = colIndex;
+  //   // クリックしたセルにコマがない
+  //   if (this.rows[x][y] === '') {
+  //     this.rows[x][y] = this.getStone();
+  //     // 隣接したセル
+  //     const cell1 = this.rows[x - 1][y - 1];
+  //     const cell2 = this.rows[x - 1][y];
+  //     const cell3 = this.rows[x - 1][y + 1];
+  //     const cell4 = this.rows[x][y - 1];
+  //     const cell5 = this.rows[x][y + 1];
+  //     const cell6 = this.rows[x][y + 1];
+  //     const cell7 = this.rows[x + 1][y - 1];
+  //     const cell8 = this.rows[x + 1][y];
+  //     const cell9 = this.rows[x + 1][y + 1];
+  //     // 色違いのセル
+  //     const cellx = this.rows[x][y] === '○' ? '●' : '○';
+  //     // 色違いの隣接したセルがある
+  //     if (cell1 !== '' && cell1 === cellx) {
+  //       console.log('cell1');
+  //     }
+  //     if (cell2 !== '' && cell2 === cellx) {
+  //       console.log('cell2');
+  //     }
+  //     if (cell3 !== '' && cell3 === cellx) {
+  //       console.log('cell3');
+  //     }
+  //     if (cell4 !== '' && cell4 === cellx) {
+  //       console.log('cell4');
+  //     }
+  //     if (cell5 !== '' && cell5 === cellx) {
+  //       console.log('cell5');
+  //     }
+  //     if (cell6 !== '' && cell6 === cellx) {
+  //       console.log('cell6');
+  //     }
+  //     if (cell7 !== '' && cell7 === cellx) {
+  //       console.log('cell7');
+  //     }
+  //     if (cell8 !== '' && cell8 === cellx) {
+  //       console.log('cell8');
+  //     }
+  //     if (cell9 !== '' && cell9 === cellx) {
+  //       console.log('cell9');
+  //     }
+
+  //     // 配列の変更をVueに検知させる
+  //     Vue.set(this.rows, x, this.rows[x]);
+  //   }
+  // }
+
+  // getStone() {
+  //   const stone = this.currentStone === '○' ? '●' : '○';
+  //   this.currentStone = stone;
+  //   return stone;
+  // }
 }
 </script>
 <style scoped>
